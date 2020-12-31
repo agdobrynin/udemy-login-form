@@ -1,4 +1,4 @@
-import {hideAllForm, showSignInForm} from "@/helpers/formShow";
+import {hideAllForm, showRegForm} from "@/helpers/formShow";
 import {fetchCountries} from "@/services/fetchCountries";
 import {setLoading, unsetLoading} from "@/helpers/formActions";
 import FormUI from "@/config/formUI";
@@ -7,12 +7,10 @@ import {notifyError} from "@/helpers/notofication";
 import {makeAutocomplete} from "@/helpers/autocomplete";
 import appPage from "@/config/appPage";
 import onSubmitRegistration from "@/Handlers/onSubmitRegistration";
-import formUI from "@/config/formUI";
 import {removeValidateClass} from "@/helpers/helpers";
 
 let countries;
 let cities = [];
-let preloader;
 
 /**
  * @param {Event} event
@@ -38,7 +36,7 @@ export default async function onClickShowRegForm(event) {
         notifyError(e.message);
     } finally {
         unsetLoading(appPage.loaderDiv);
-        showSignInForm();
+        showRegForm();
     }
 }
 

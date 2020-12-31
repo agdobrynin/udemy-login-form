@@ -11,7 +11,7 @@ export function showLoginForm() {
     import("@/Controllers/Auth").finally(() => unsetLoading(appPage.loaderDiv));
 }
 
-export function showSignInForm() {
+export function showRegForm() {
     divConfig.regFormDiv.classList.remove(hideClass);
     [divConfig.loginFormDiv, divConfig.newFeedDiv, divConfig.logoutDiv].forEach(d => d.classList.add(hideClass));
 }
