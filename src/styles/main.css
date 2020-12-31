@@ -1,0 +1,31 @@
+html,
+body {
+    background-color: #d7d7d7;
+}
+
+.form-body {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#login-form main, #sign-in-form main {
+    width: 100%;
+    max-width: 380px;
+    padding: 15px;
+    margin: auto;
+}
+
+#sign-in-form main {
+    max-width: 450px;
+}
+
+#loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: auto;
+}
