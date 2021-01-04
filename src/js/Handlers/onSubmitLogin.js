@@ -2,9 +2,10 @@ import formUI from "@/config/formUI";
 import appPage from "@/config/appPage";
 import {notifyClearAll, notifyError, notifySuccess} from "@/helpers/notofication";
 import {lockForm, setLoading, unlockForm, unsetLoading} from "@/helpers/formActions";
-import showNewsFeed from "@/Controllers/NewsFeed";
 import validateFields from "@/validation/validateFields";
 import {loginAction} from "@/services/auth";
+import {showNewsFeedForm} from "@/helpers/formShow";
+import {removeValidationClassOnInputs} from "@/helpers/helpers";
 
 /**
  * @param {Event} event
@@ -22,12 +23,12 @@ export default async function onSubmitLogin(event, login, password) {
     try {
         lockForm(formUI.formLogin);
         setLoading(appPage.loaderDiv);
-        const authResult = await loginAction(login.value, password.value);
-        [login, password].forEach(input => input.classList.remove(formUI.validClass));
+        await loginAction(login.value, password.value);
+        removeValidationClassOnInputs([login, password])
         formUI.formLogin.reset();
         notifyClearAll();
         notifySuccess('Auth successfully');
-        await showNewsFeed();
+        showNewsFeedForm();
     } catch (error) {
         notifyError(error.message);
     } finally {
