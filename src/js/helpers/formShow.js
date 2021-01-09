@@ -41,7 +41,7 @@ export function showNewsFeedForm() {
             .catch(e => notifyError(e.message))
             .finally(() => {
                 unsetLoading(appPage.loaderDiv);
-                [divConfig.newFeedDiv].forEach(d => d.classList.remove(hideClass));
+                divConfig.newFeedDiv.classList.remove(hideClass);
                 [divConfig.loginFormDiv, divConfig.regFormDiv].forEach(d => d.classList.add(hideClass));
             }));
 
