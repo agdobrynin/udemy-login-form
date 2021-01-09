@@ -9,15 +9,15 @@ import formUI from "@/config/formUI";
 const hideClass = "d-none";
 
 export function showLoginForm() {
-    divConfig.loginFormDiv.classList.remove(hideClass);
-    [divConfig.regFormDiv, divConfig.newFeedDiv, divConfig.logoutDiv].forEach(d => d.classList.add(hideClass));
     setLoading(appPage.loaderDiv);
-    import("@/Controllers/Auth").finally(() => unsetLoading(appPage.loaderDiv));
+    import("@/Controllers/Auth").finally(() => {
+        unsetLoading(appPage.loaderDiv);
+        divConfig.loginFormDiv.classList.remove(hideClass);
+        [divConfig.regFormDiv, divConfig.newFeedDiv].forEach(d => d.classList.add(hideClass));
+    });
 }
 
 export function showRegForm() {
-    divConfig.regFormDiv.classList.remove(hideClass);
-    [divConfig.loginFormDiv, divConfig.newFeedDiv, divConfig.logoutDiv].forEach(d => d.classList.add(hideClass));
     setLoading(appPage.loaderDiv);
     lockForm(formUI.formReg);
     import("@/Controllers/Registration")
@@ -28,17 +28,22 @@ export function showRegForm() {
                 })
                 .finally(() => {
                     unsetLoading(appPage.loaderDiv);
+                    divConfig.regFormDiv.classList.remove(hideClass);
+                    [divConfig.loginFormDiv, divConfig.newFeedDiv].forEach(d => d.classList.add(hideClass));
                 });
         });
 }
 
 export function showNewsFeedForm() {
-    [divConfig.newFeedDiv, divConfig.logoutDiv].forEach(d => d.classList.remove(hideClass));
-    [divConfig.loginFormDiv, divConfig.regFormDiv].forEach(d => d.classList.add(hideClass));
     setLoading(appPage.loaderDiv);
     import("@/Controllers/NewsFeed")
-        .then(() => NewsFeed().catch(e => notifyError(e.message)))
-        .finally(() => unsetLoading(appPage.loaderDiv));
+        .then(() => NewsFeed()
+            .catch(e => notifyError(e.message))
+            .finally(() => {
+                unsetLoading(appPage.loaderDiv);
+                [divConfig.newFeedDiv].forEach(d => d.classList.remove(hideClass));
+                [divConfig.loginFormDiv, divConfig.regFormDiv].forEach(d => d.classList.add(hideClass));
+            }));
 
 }
 
