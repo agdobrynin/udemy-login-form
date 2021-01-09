@@ -7,5 +7,6 @@ const {formLogin, emailLogin, passwordLogin} = formUI;
 const loginFormInputs = [emailLogin, passwordLogin];
 
 formLogin.addEventListener("submit", (event) => onSubmitLogin(event, emailLogin, passwordLogin));
-loginFormInputs.forEach(input => input.addEventListener("focus", (event) => removeValidateClass(event.target)));
-
+loginFormInputs.forEach(input => {
+    input.addEventListener("focus", (event) => removeValidateClass(event.target));
+});
