@@ -1,4 +1,4 @@
-const displayNoneClass = "d-none";
+import appPage from "@/config/appPage";
 
 /**
  * Get Fieldset element as wrapper of HTMLElement.
@@ -62,7 +62,7 @@ export function unlockForm(from) {
  * @param {Element} element
  */
 export function setLoading(element) {
-    getLoader(element).classList.remove(displayNoneClass);
+    getLoader(element).classList.remove(appPage.hideClass);
 }
 
 /**
@@ -71,5 +71,5 @@ export function setLoading(element) {
  * @param {Element} element
  */
 export function unsetLoading(element) {
-    getLoader(element).classList.add(displayNoneClass);
+    getLoader(element).classList.add(appPage.hideClass);
 }
