@@ -4,6 +4,7 @@ import {
 import appPage from "@/config/appPage";
 import formUI from "@/config/formUI";
 import initRegForm from "@/Controllers/Registration";
+import hideAllForms from "@/helpers/showForm/hideAllForms";
 
 export default function regForm() {
     setLoading(appPage.loaderDiv);
@@ -16,8 +17,8 @@ export default function regForm() {
                 })
                 .finally(() => {
                     unsetLoading(appPage.loaderDiv);
+                    hideAllForms();
                     appPage.regFormDiv.classList.remove(appPage.hideClass);
-                    [appPage.loginFormDiv, appPage.newFeedDiv].forEach((d) => d.classList.add(appPage.hideClass));
                 });
         });
 }
