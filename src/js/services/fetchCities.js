@@ -1,14 +1,13 @@
 import http from "@/services/core/http";
-
-export const URL_CITIES = "/location/get-cities";
+import api from "@/config/api";
 
 /**
  * Fetch Cities.
  * @param {string} countryId
   */
-export async function fetchCities(countryId) {
+export default async function fetchCities(countryId) {
     try {
-        return await http.get(`${URL_CITIES}/${countryId}`);
+        return await http.get(`${api.cities}/${countryId}`);
     } catch (error) {
         return Promise.reject(new Error(error?.response?.data?.message || error?.message));
     }

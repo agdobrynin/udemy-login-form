@@ -1,11 +1,13 @@
 import formUI from "@/config/formUI";
 import appPage from "@/config/appPage";
-import {notifyClearAll, notifyError, notifySuccess} from "@/helpers/notofication";
-import {lockForm, setLoading, unlockForm, unsetLoading} from "@/helpers/formActions";
+import { notifyClearAll, notifyError, notifySuccess } from "@/helpers/notofication";
+import {
+    lockForm, setLoading, unlockForm, unsetLoading,
+} from "@/helpers/formActions";
 import validateFields from "@/validation/validateFields";
-import {loginAction} from "@/services/auth";
-import {showNewsFeedForm} from "@/helpers/formShow";
-import {removeValidationClassOnInputs} from "@/helpers/helpers";
+import loginAction from "@/services/auth";
+import { removeValidationClassOnInputs } from "@/helpers/helpers";
+import newsForm from "@/helpers/showForm/newsForm";
 
 /**
  * @param {Event} event
@@ -24,11 +26,11 @@ export default async function onSubmitLogin(event, login, password) {
         lockForm(formUI.formLogin);
         setLoading(appPage.loaderDiv);
         await loginAction(login.value, password.value);
-        removeValidationClassOnInputs([login, password])
+        removeValidationClassOnInputs([login, password]);
         formUI.formLogin.reset();
         notifyClearAll();
-        notifySuccess('Auth successfully');
-        showNewsFeedForm();
+        notifySuccess("Auth successfully");
+        newsForm();
     } catch (error) {
         notifyError(error.message);
     } finally {

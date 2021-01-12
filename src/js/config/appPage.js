@@ -6,4 +6,5 @@ export default {
     newFeedDiv: document.querySelector("#news-feed-form"),
     logoutDiv: document.querySelector("#logout-div"),
     loaderDiv: document.querySelector("#loader"),
-}
+    hideClass: "d-none",
+};

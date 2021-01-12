@@ -1,13 +1,14 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "@styles/index";
-import {getToken, resetToken} from "@/services/appToken";
-import {notifyError, notifyWarning} from "@/helpers/notofication";
-import {hideAllForm, showLoginForm, showNewsFeedForm} from "@/helpers/formShow";
-import divConfig from "@/config/appPage";
+import { getToken, resetToken } from "@/services/appToken";
+import { notifyError, notifyWarning } from "@/helpers/notofication";
 import onClickShowLoginForm from "@/Handlers/onClickShowLoginForm";
 import onClickShowRegForm from "@/Handlers/onClickShowRegForm";
 import onLogout from "@/Handlers/onLogout";
 import appPage from "@/config/appPage";
+import loginForm from "@/helpers/showForm/loginForm";
+import newsForm from "@/helpers/showForm/newsForm";
+import hideAllForms from "@/helpers/showForm/hideAllForms";
 
 /**
  * Show registration form.
@@ -15,16 +16,16 @@ import appPage from "@/config/appPage";
 appPage.showSignInLink.addEventListener("click", onClickShowRegForm);
 
 /**
- * Show login form.
+ * Show loginForm form.
  */
 appPage.showLoginLink.addEventListener("click", onClickShowLoginForm);
 
 /**
  * Logout. Delete auth token.
  */
-divConfig.logoutDiv.addEventListener("click", onLogout);
+appPage.logoutDiv.addEventListener("click", onLogout);
 
-hideAllForm();
+hideAllForms();
 
 let authToken = null;
 try {
@@ -34,14 +35,13 @@ try {
 }
 
 if (authToken === null) {
-    showLoginForm();
+    loginForm();
 } else {
     try {
-        showNewsFeedForm();
+        newsForm();
     } catch (e) {
         notifyError(e.message);
         resetToken();
-        showLoginForm();
+        loginForm();
     }
 }
-

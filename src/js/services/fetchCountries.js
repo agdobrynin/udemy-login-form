@@ -1,13 +1,12 @@
 import http from "@/services/core/http";
-
-export const URL_COUNTRIES = "/location/get-countries";
+import api from "@/config/api";
 
 /**
  * Fetch Countries.
  */
-export async function fetchCountries() {
+export default async function fetchCountries() {
     try {
-        return await http.get(URL_COUNTRIES);
+        return await http.get(api.countries);
     } catch (error) {
         return Promise.reject(new Error(error?.response?.data?.message || error?.message));
     }

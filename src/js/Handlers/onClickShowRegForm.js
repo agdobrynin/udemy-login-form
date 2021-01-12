@@ -1,9 +1,9 @@
-import {showRegForm} from "@/helpers/formShow";
+import regForm from "@/helpers/showForm/regForm";
 
 /**
  * @param {Event} event
  */
 export default async function onClickShowRegForm(event) {
     event.preventDefault();
-    showRegForm();
+    regForm();
 }

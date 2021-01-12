@@ -1,6 +1,6 @@
 import http from "@/services/core/http";
+import api from "@/config/api";
 
-export const URL_AUTH = "/auth/login";
 /**
  * Auth user.
  *
@@ -8,11 +8,11 @@ export const URL_AUTH = "/auth/login";
  * @param {String} password
  * @returns {Promise<any>}
  */
-export async function loginAction(email, password) {
+export default async function loginAction(email, password) {
     try {
         const authBody = JSON.stringify({ email, password });
 
-        return await http.post(URL_AUTH, authBody);
+        return await http.post(api.auth, authBody);
     } catch (error) {
         return Promise.reject(error?.response?.data || error);
     }

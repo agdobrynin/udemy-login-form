@@ -7,4 +7,4 @@ export default {
     // boostrap class
     validClass: "is-valid",
     formReg: document.forms["registration-form"],
-}
+};

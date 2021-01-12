@@ -7,11 +7,11 @@ const displayNoneClass = "d-none";
  * @returns {HTMLFieldSetElement}
  */
 function wrapFieldSet(from) {
-    const fieldset = from.parentNode;
+    let fieldset = from.parentNode;
     if (fieldset.tagName.toLocaleUpperCase() !== "FIELDSET") {
-        const fieldset = document.createElement("fieldset");
-            from.parentNode.insertBefore(fieldset, from);
-            fieldset.appendChild(from);
+        fieldset = document.createElement("fieldset");
+        from.parentNode.insertBefore(fieldset, from);
+        fieldset.appendChild(from);
 
         return fieldset;
     }
@@ -73,4 +73,3 @@ export function setLoading(element) {
 export function unsetLoading(element) {
     getLoader(element).classList.add(displayNoneClass);
 }
-

@@ -1,4 +1,4 @@
-export const AUTH_TOKEN_LOCAL_KEY = "APP-LOGIN_FORM-TOKEN";
+const AUTH_TOKEN_LOCAL_KEY = "APP-LOGIN_FORM-TOKEN";
 
 /**
  * Save token to localstorage.
@@ -13,7 +13,7 @@ export function storeToken(token) {
  * @returns {string|null}
  */
 export function getToken() {
-    return  localStorage.getItem(AUTH_TOKEN_LOCAL_KEY);
+    return localStorage.getItem(AUTH_TOKEN_LOCAL_KEY);
 }
 
 /**

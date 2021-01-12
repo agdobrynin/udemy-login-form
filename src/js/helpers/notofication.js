@@ -11,7 +11,7 @@ function createContainer() {
     createdContainer.classList.add(notifyContainerClass);
     createdContainer.style.cssText = "position: fixed; top: 10px; right: 10px; z-index: 99;";
     document.addEventListener("click", (event) => {
-        if(event.target?.classList.contains("btn-close")) {
+        if (event.target?.classList.contains("btn-close")) {
             event.target?.parentNode.remove();
         }
     });
@@ -56,18 +56,15 @@ function createNotify(message, className) {
  */
 export function notify(message, className, timeout) {
     const notifyContainer = getContainer();
-    if (className === undefined) {
-        className = "alert alert-primary";
-    }
-    const notifyDiv = createNotify(message, className);
+    const notifyDiv = createNotify(message, className || "alert alert-primary");
     notifyContainer.insertAdjacentElement("beforeend", notifyDiv);
     if (timeout) {
-        setTimeout(() =>  notifyDiv.remove(), timeout);
+        setTimeout(() => notifyDiv.remove(), timeout);
     }
 }
 
 export function notifyClearAll() {
-    Array.from(getContainer().querySelectorAll(`.${notifyClass}`)).forEach(notify => notify?.remove());
+    Array.from(getContainer().querySelectorAll(`.${notifyClass}`)).forEach((notifyDiv) => notifyDiv?.remove());
 }
 
 export function notifyError(message, timeout = 5000) {

@@ -1,9 +1,9 @@
-import {showLoginForm} from "@/helpers/formShow";
+import loginForm from "@/helpers/showForm/loginForm";
 
 /**
  * @param {Event} event
  */
 export default function onClickShowLoginForm(event) {
     event.preventDefault();
-    showLoginForm();
+    loginForm();
 }

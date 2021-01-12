@@ -1,6 +1,6 @@
 import http from "@/services/core/http";
+import api from "@/config/api";
 
-export const URL_REGISTRATION = "/auth/signup";
 /**
  * Registration user.
  *
@@ -20,11 +20,11 @@ export const URL_REGISTRATION = "/auth/signup";
  *
  * @returns {Promise<any>}
  */
-export async function registration(regUser) {
+export default async function registration(regUser) {
     try {
         const regUserBody = JSON.stringify(regUser);
 
-        return await http.post(URL_REGISTRATION, regUserBody);
+        return await http.post(api.reg, regUserBody);
     } catch (error) {
         return Promise.reject(error?.response?.data || error);
     }

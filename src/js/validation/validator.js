@@ -1,6 +1,8 @@
 const rules = {
     email: {
+        /* eslint-disable */
         regExp: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+        /* eslint-enable */
     },
     password: {
         regExp: /(?=.*?[0-9].*?[0-9])(?=.*[a-z]).{8,}/i,
@@ -10,13 +12,12 @@ const rules = {
         regExp: /^(?!\s*$).+/,
     },
     phone: {
-      regExp: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
-    }
-    ,
+        regExp: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/,
+    },
     date: {
         regExp: /^(\d){4}-(\d){2}-(\d){2}$/,
     },
-}
+};
 
 export class ValidationError extends Error {
     constructor(message) {

@@ -3,17 +3,17 @@
  * @param {HTMLInputElement} inputTextField
  * @param {String[]} arrayOptions
  */
-export function makeAutocomplete(inputTextField, arrayOptions) {
+export default function makeAutocomplete(inputTextField, arrayOptions) {
     const filedName = inputTextField?.name || "unknown";
     const errorPrefixMessage = `makeAutocomplete for field "${filedName}"`;
 
-    if (!(inputTextField instanceof HTMLInputElement) || inputTextField.type.toLocaleUpperCase() !== 'TEXT') {
+    if (!(inputTextField instanceof HTMLInputElement) || inputTextField.type.toLocaleUpperCase() !== "TEXT") {
         throw new Error(`${errorPrefixMessage} - First params must be as HTMLInputElement with type = TEXT`);
     }
     if (!(arrayOptions instanceof Array)) {
         throw new Error(`${errorPrefixMessage} - Second params must be as Array with string elements`);
     }
-    const id = filedName + "-autocomplete";
+    const id = `${filedName}-autocomplete`;
     let datalist = document.querySelector(`#${id}`);
     if (datalist === null) {
         inputTextField.setAttribute("list", id);
@@ -21,11 +21,8 @@ export function makeAutocomplete(inputTextField, arrayOptions) {
         datalist = document.querySelector(`#${id}`);
     }
 
-    let options = arrayOptions.reduce((acc, item) => {
-        acc += `<option value="${item}">`;
-        return acc;
-    }, "");
+    datalist.innerHTML = arrayOptions.reduce((acc, item) => `${acc}<option value="${item}">`, "");
 
-    datalist.innerHTML = options;
+    // eslint-disable-next-line no-param-reassign
     inputTextField.value = "";
 }

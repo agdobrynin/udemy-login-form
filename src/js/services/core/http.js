@@ -8,8 +8,8 @@ import setTokenForRequest from "@/services/middleware/setTokenForRequest";
 const http = axios.create({
     baseURL: api.endpoint,
     headers: {
-        'Content-Type': 'application/json'
-    }
+        "Content-Type": "application/json",
+    },
 });
 
 // Save token after success auth
@@ -18,6 +18,6 @@ http.interceptors.response.use(saveToken);
 http.interceptors.request.use(setTokenForRequest);
 
 // Get clear response from API or use errorApi middleware
-http.interceptors.response.use(clearDataFromApi, errorApi)
+http.interceptors.response.use(clearDataFromApi, errorApi);
 
 export default http;
