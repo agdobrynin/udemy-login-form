@@ -9,8 +9,6 @@ module.exports = {
     rules: {
         quotes: [2, "double"],
         "max-len": ["error", 120],
-        "import/extensions": "off",
-        "import/no-unresolved": "off",
         indent: ["error", 4],
     },
     settings: {
