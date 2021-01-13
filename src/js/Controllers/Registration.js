@@ -27,10 +27,9 @@ async function onChangeCountry(event) {
             city.setAttribute("disabled", "disabled");
             throw new Error(`Country "${countryName}" not found!`);
         }
-        const hasCities = cities[countryName] || false;
-        if (!hasCities) {
-            // eslint-disable-next-line no-unused-vars
-            const foundCountry = Object.entries(countries).find(([id, country]) => country === countryName);
+
+        if (cities[countryName] === undefined) {
+            const foundCountry = Object.entries(countries).find(([, country]) => country === countryName);
             const countryId = foundCountry[0] || "";
             if (countryId === "") {
                 throw new Error(`Country Id not found by name "${countryName}"`);
